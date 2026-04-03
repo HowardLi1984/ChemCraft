@@ -4,7 +4,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Model](https://img.shields.io/badge/Model-Coming%20Soon-blue)]()
-[![ArXiv](https://img.shields.io/badge/ArXiv-Pending-red)](https://arxiv.org/pdf/2601.17687)
+[![ArXiv](https://img.shields.io/badge/Arxiv-2601.17687-b31b1b.svg?logo=arXiv)](https://arxiv.org/pdf/2601.17687)
 
 ## 📢 News & Updates
 
