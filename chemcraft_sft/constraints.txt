@@ -1,0 +1,5 @@
+
+torch==2.9.0
+torchaudio==2.9.0
+torchvision==0.24.0
+vllm==0.13.0

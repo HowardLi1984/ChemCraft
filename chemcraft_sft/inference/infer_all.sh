@@ -1,0 +1,2 @@
+python main_infer_moledit.py
+python main_infer_molund.py

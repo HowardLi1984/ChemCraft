@@ -1,0 +1,370 @@
+tools:
+  - class_name: verl.tools.chem_tool_new.MolSimilarityTool
+    config:
+      retrieval_service_url: http://127.0.0.1:8080/chem_function
+      num_workers: 10
+      rate_limit: 120
+      timeout: 30
+      type: native
+    tool_schema:
+      type: function
+      function:
+        name: MolSimilarity
+        description: "Input molecule SMILES1 and SMILES2, returns Tanimoto similarity between two molecules."
+        parameters:
+          type: object
+          properties:
+            SMILES1:
+              type: string
+              description: "First molecule SMILES string"
+            SMILES2:
+              type: string
+              description: "Second molecule SMILES string"
+          required: 
+            - SMILES1
+            - SMILES2
+  
+  - class_name: verl.tools.chem_tool_new.SMILES2Weight
+    config:
+      retrieval_service_url: http://127.0.0.1:8080/chem_function
+      num_workers: 10
+      rate_limit: 120
+      timeout: 30
+      type: native
+    tool_schema:
+      type: function
+      function:
+        name: SMILES2Weight
+        description: Input molecule SMILES, returns the molecule weight.
+        parameters:
+          type: object
+          properties:
+            query_list:
+              type: array
+              item:
+                type: string
+              description: {'SMILES': 'your_smiles'}, query_list is dict
+          required: 
+            - query_list
+  
+  - class_name: verl.tools.chem_tool_new.FunctionalGroups
+    config:
+      retrieval_service_url: http://127.0.0.1:8080/chem_function
+      num_workers: 10
+      rate_limit: 120
+      timeout: 30
+      type: native
+    tool_schema:
+      type: function
+      function:
+        name: FunctionalGroups
+        description: Get the functional groups in a molecule. Input SMILES, return list of functional groups in the molecule.
+        parameters:
+          type: object
+          properties:
+            query_list:
+              type: array
+              item:
+                type: string
+              description: {'SMILES': 'your_smiles'}, query_list is dict
+          required: 
+            - query_list
+  
+  - class_name: verl.tools.chem_tool_new.CompareSMILES
+    config:
+      retrieval_service_url: http://127.0.0.1:8080/chem_function
+      num_workers: 10
+      rate_limit: 120
+      timeout: 30
+      type: native
+    tool_schema:
+      type: function
+      function:
+        name: CompareSMILES
+        description: Input molecule SMILES1 and SMILES2, returns if they are identical. To judge if two molecules are identical, you should always use this tool, instead of directly comparing the SMILES strings.
+        parameters:
+          type: object
+          properties:
+            query_list:
+              type: array
+              item:
+                type: string
+              description: {'SMILES1': 'your_smiles1', 'SMILES2': 'your_smiles2'}, query_list is dict
+          required: 
+            - query_list
+  
+  - class_name: verl.tools.chem_tool_new.CanonicalizeSMILES
+    config:
+      retrieval_service_url: http://127.0.0.1:8080/chem_function
+      num_workers: 10
+      rate_limit: 120
+      timeout: 30
+      type: native
+    tool_schema:
+      type: function
+      function:
+        name: CanonicalizeSMILES
+        description: Canonicalize SMILES representation. Input SMILES, returns canonicalized SMILES. You should use this tool when asked for canonicalized SMILES.
+        parameters:
+          type: object
+          properties:
+            query_list:
+              type: array
+              item:
+                type: string
+              description: {'SMILES': 'your_smiles'}, query_list is dict
+          required: 
+            - query_list
+  
+  - class_name: verl.tools.chem_tool_new.CountMolAtoms
+    config:
+      retrieval_service_url: http://127.0.0.1:8080/chem_function
+      num_workers: 10
+      rate_limit: 120
+      timeout: 30
+      type: native
+    tool_schema:
+      type: function
+      function:
+        name: CountMolAtoms
+        description: Count the number of atoms in a molecule. Input SMILES, returns the types of atoms and their numbers.
+        parameters:
+          type: object
+          properties:
+            query_list:
+              type: array
+              item:
+                type: string
+              description: {'SMILES': 'your_smiles'}, query_list is dict
+          required: 
+            - query_list
+  
+  - class_name: verl.tools.chem_tool_new.ReplaceFunctionalGroup
+    config:
+      retrieval_service_url: http://127.0.0.1:8080/chem_function
+      num_workers: 10
+      rate_limit: 120
+      timeout: 30
+      type: native
+    tool_schema:
+      type: function
+      function:
+        name: ReplaceFunctionalGroup
+        description: Replace a functional group in a molecule with another functional group using functional group names.
+        parameters:
+          type: object
+          properties:
+            query_list:
+              type: array
+              item:
+                type: string
+              description: {'SMILES': 'your_smiles', 'old_group_name': 'functional_group', 'new_group_name': 'functional_group'}, query_list is dict
+          required: 
+            - query_list
+  
+  - class_name: verl.tools.chem_tool_new.RemoveFunctionalGroup
+    config:
+      retrieval_service_url: http://127.0.0.1:8080/chem_function
+      num_workers: 10
+      rate_limit: 120
+      timeout: 30
+      type: native
+    tool_schema:
+      type: function
+      function:
+        name: RemoveFunctionalGroup
+        description: Remove a specific functional group from a molecule.
+        parameters:
+          type: object
+          properties:
+            query_list:
+              type: array
+              item:
+                type: string
+              description: {'SMILES': 'your_smiles', 'old_group_name': 'functional_group'}, query_list is dict
+          required: 
+            - query_list
+  
+  - class_name: verl.tools.chem_tool_new.AddFunctionalGroup
+    config:
+      retrieval_service_url: http://127.0.0.1:8080/chem_function
+      num_workers: 10
+      rate_limit: 120
+      timeout: 30
+      type: native
+    tool_schema:
+      type: function
+      function:
+        name: AddFunctionalGroup
+        description:  Add a functional group to a molecule.
+        parameters:
+          type: object
+          properties:
+            query_list:
+              type: array
+              item:
+                type: string
+              description: {'SMILES': 'your_smiles', 'new_group_name': 'functional_group'}, query_list is dict
+          required: 
+            - query_list
+  
+  - class_name: verl.tools.chem_tool_new.GetRXN
+    config:
+      retrieval_service_url: http://127.0.0.1:8080/chem_function
+      num_workers: 10
+      rate_limit: 120
+      timeout: 30
+      type: native
+    tool_schema:
+      type: function
+      function:
+        name: GetRXN
+        description: Searches the reaction database for chemical reactions based on the given query.
+        parameters:
+          type: object
+          properties:
+            query_list:
+              type: array
+              item:
+                type: string
+              description: {'RXN': 'your reactent or product'} The tool will return search results for each query.
+          required: 
+            - query_list
+  
+  - class_name: verl.tools.chem_tool_new.QEDPropertyPred
+    config:
+      retrieval_service_url: http://127.0.0.1:8080/chem_function
+      num_workers: 10
+      rate_limit: 120
+      timeout: 30
+      type: native
+    tool_schema:
+      type: function
+      function:
+        name: QEDPropertyPred
+        description: Predict the QED property of a molecule.
+        parameters:
+          type: object
+          properties:
+            query_list:
+              type: array
+              item:
+                type: string
+              description: {'SMILES': 'your_smiles'} The tool will return the target property of your smiles.
+          required: 
+            - query_list
+  
+  - class_name: verl.tools.chem_tool_new.DRD2PropertyPred
+    config:
+      retrieval_service_url: http://127.0.0.1:8080/chem_function
+      num_workers: 10
+      rate_limit: 120
+      timeout: 30
+      type: native
+    tool_schema:
+      type: function
+      function:
+        name: DRD2PropertyPred
+        description: Predict the QED property of a molecule.
+        parameters:
+          type: object
+          properties:
+            query_list:
+              type: array
+              item:
+                type: string
+              description: {'SMILES': 'your_smiles'} The tool will return the target property of your smiles.
+          required: 
+            - query_list
+  
+  - class_name: verl.tools.chem_tool_new.JNK3PropertyPred
+    config:
+      retrieval_service_url: http://127.0.0.1:8080/chem_function
+      num_workers: 10
+      rate_limit: 120
+      timeout: 30
+      type: native
+    tool_schema:
+      type: function
+      function:
+        name: JNK3PropertyPred
+        description: Predict the QED property of a molecule.
+        parameters:
+          type: object
+          properties:
+            query_list:
+              type: array
+              item:
+                type: string
+              description: {'SMILES': 'your_smiles'} The tool will return the target property of your smiles.
+          required: 
+            - query_list
+  
+  - class_name: verl.tools.chem_tool_new.LogPPropertyPred
+    config:
+      retrieval_service_url: http://127.0.0.1:8080/chem_function
+      num_workers: 10
+      rate_limit: 120
+      timeout: 30
+      type: native
+    tool_schema:
+      type: function
+      function:
+        name: LogPPropertyPred
+        description: Predict the QED property of a molecule.
+        parameters:
+          type: object
+          properties:
+            query_list:
+              type: array
+              item:
+                type: string
+              description: {'SMILES': 'your_smiles'} The tool will return the target property of your smiles.
+          required: 
+            - query_list
+  
+  - class_name: verl.tools.chem_tool_new.GSKPropertyPred
+    config:
+      retrieval_service_url: http://127.0.0.1:8080/chem_function
+      num_workers: 10
+      rate_limit: 120
+      timeout: 30
+      type: native
+    tool_schema:
+      type: function
+      function:
+        name: GSKPropertyPred
+        description: Predict the QED property of a molecule.
+        parameters:
+          type: object
+          properties:
+            query_list:
+              type: array
+              item:
+                type: string
+              description: {'SMILES': 'your_smiles'} The tool will return the target property of your smiles.
+          required: 
+            - query_list
+  
+  - class_name: verl.tools.chem_tool_new.SolubilityPropertyPred
+    config:
+      retrieval_service_url: http://127.0.0.1:8080/chem_function
+      num_workers: 10
+      rate_limit: 120
+      timeout: 30
+      type: native
+    tool_schema:
+      type: function
+      function:
+        name: SolubilityPropertyPred
+        description: Predict the QED property of a molecule.
+        parameters:
+          type: object
+          properties:
+            query_list:
+              type: array
+              item:
+                type: string
+              description: {'SMILES': 'your_smiles'} The tool will return the target property of your smiles.
+          required: 
+            - query_list

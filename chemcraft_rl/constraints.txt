@@ -1,0 +1,5 @@
+
+torch==2.8.0
+torchaudio==2.8.0
+torchdata==0.8.0
+torchvision==0.23.0
