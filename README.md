@@ -9,8 +9,8 @@
 
 ## 📢 News & Updates
 
-- **[2026-01-26] Paper Availability:** Due to the extended moderation process on arXiv, we are temporarily hosting the **pre-print draft** directly in this repository. You can find the PDF in the `assets/` folder or download it [here](./assets/paper_draft.pdf). We will update this section with the official arXiv link as soon as it becomes available.
-- **[Coming Soon] Code & Weights:** We are currently finalizing the code cleanup and documentation. The full source code and model weights are scheduled to be open-sourced **within two weeks**. Please star 🌟 the repo to stay tuned!
+- **[2026-01-26] Paper Available:** Due to the extended moderation process on arXiv, we are temporarily hosting the **pre-print draft** directly in this repository. You can find the PDF in the `assets/` folder or download it [here](./assets/paper_draft.pdf). We will update this section with the official arXiv link as soon as it becomes available.
+- **[2026-04-12] Code & Weights & Dataset Available** We have finalized the code / weight / dataset cleanup and documentation. The full source code and model weights have been open-sourced!
 
 ## 🚀 Environment Setup
 
@@ -116,7 +116,7 @@ We highly recommend checking out our related benchmark work:
 ## 🗓️ Roadmap
 
 - [x] Release pre-print paper draft.
-- [ ] Release inference code (Expected within 2 weeks).
-- [ ] Release model checkpoints (Expected within 2 weeks).
-- [ ] Release training scripts.
-- [ ] Update official arXiv link.
+- [x] Release inference code (Expected within 2 weeks).
+- [x] Release model checkpoints (Expected within 2 weeks).
+- [x] Release training scripts.
+- [x] Update official arXiv link.
