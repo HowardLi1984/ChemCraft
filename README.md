@@ -3,8 +3,9 @@
 **Official Implementation of "Agentic reinforcement learning empowers next-generation chemical language models for molecular design and synthesis"**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Model](https://img.shields.io/badge/Model-Coming%20Soon-blue)]()
+[![Model](https://img.shields.io/badge/Model-huggingface-blue)](https://huggingface.co/OzymandisLi/ChemCraft-7B)
 [![ArXiv](https://img.shields.io/badge/Arxiv-2601.17687-b31b1b.svg?logo=arXiv)](https://arxiv.org/pdf/2601.17687)
+[![Dataset](https://img.shields.io/badge/Dataset-huggingface-blue)](https://huggingface.co/datasets/OzymandisLi/ChemCraft-Agent-Trajectory/)
 
 ## 📢 News & Updates
 
