@@ -32,12 +32,40 @@ huggingface-cli download OzymandisLi/ChemCraft-7B --local-dir checkpoint/
 ### 2. Dataset & Agent Trajectories
 While this repository contains basic data samples in `dataset/`, the complete **Chemical Agent Sandbox** data (including massive intermediate trajectories and construction scripts) is hosted separately on Hugging Face Datasets.
 
-| Dataset | Link |
-| :--- | :--- |
-| **ChemCraft-Agent-Trajectory** | [📊 HF Dataset](https://huggingface.co/datasets/OzymandisLi/ChemCraft-Agent-Trajectory) |
+| Dataset | Link | Size |
+| :--- | :--- | :--- |
+| **ChemCraft-Agent-Trajectory** | [📊 HF Dataset](https://huggingface.co/datasets/OzymandisLi/ChemCraft-Agent-Trajectory) | ~1.5 GB |
 
 > [!IMPORTANT]
 > To fully utilize ChemCraft's capabilities, you must replace the local `dataset/` folder with the complete content from Hugging Face.
+
+### 3. Training & Execution Scripts
+
+We provide a complete pipeline to reproduce **ChemCraft-7B**, covering trajectory generation, environment setup, and the two-stage training process (SFT & RL).
+
+**[1] Chemical Agent Trajectory Construction:** Generate the raw trajectories for agentic reasoning and convert them into the final training format.
+```bash
+# Step A: Generate tool-use SFT trajectories
+cd dataset/chemcot/colde_start_v2 && python get_tool_sft_trajectory.py
+
+# Step B: Process data into parquet format
+cd ../ && python get_parquet.py
+```
+
+**[2] Launch Chemical Agent Sandbox:** Start the sandbox environment to support agent-based retrieval and molecular interaction.
+```bash
+cd chemcraft_rl/ && bash retriever_chemagent.sh
+```
+
+**[3] Cold-start SFT (Supervised Fine-tuning):** Train the initial policy model by fine-tuning Qwen-7B-Instruct into ChemCraft-7B-coldstart.
+```bash
+cd chemcraft_sft/ && bash train_coldstart_sft_7B.sh
+```
+
+**[4] SMILES-GRPO Reinforcement Learning:** Advance the model through Group Relative Policy Optimization (GRPO) to obtain the final ChemCraft-7B.
+```bash
+cd chemcraft_rl/ && bash train_qwenagent_withrxn.sh
+```
 
 ## 🚀 Environment Setup
 
@@ -131,19 +159,26 @@ pip install [https://github.com/Dao-AILab/flash-attention/releases/download/v2.7
 **Description:** Your system/environment uses CUDA 12.x, but the installed Flash-Attention version was compiled for CUDA 11.x. 
 **Solution:** Ensure you download and install the wheel specifically marked with +cu12.
 
-## 🔗 Related Projects
+## 🔗 Citations and Related Projects
+If you find our ChemCraft-7B helpful, please cite it as follows:
+```bibtex
+@article{li2026agentic,
+  title={Agentic reinforcement learning empowers next-generation chemical language models for molecular design and synthesis},
+  author={Li, Hao and Cao, He and Peng, Shenyao and Liu, Zijing and Feng, Bin and Wang, Yu and Yan, Zhiyuan and Tian, Yonghong and Li, Yu and Yuan, Li},
+  journal={arXiv preprint arXiv:2601.17687},
+  year={2026}
+}
+```
 
-We highly recommend checking out our related benchmark work:
-
-**ChemCotBench**
+We highly recommend checking out our related benchmark work: **ChemCotBench-v1**
 * **Paper:** [NeurIPS-2025 - ChemCotBench](https://arxiv.org/pdf/2505.21318?)
 * **Dataset:** [Hugging Face - ChemCotDataset](https://huggingface.co/datasets/OpenMol/ChemCoTDataseth)
 * **Benchmark:** [Hugging Face - ChemCotBench](https://huggingface.co/datasets/OpenMol/ChemCoTBench)
-
-## 🗓️ Roadmap
-
-- [x] Release pre-print paper draft.
-- [x] Release inference code (Expected within 2 weeks).
-- [x] Release model checkpoints (Expected within 2 weeks).
-- [x] Release training scripts.
-- [x] Update official arXiv link.
+```bibtex
+@article{li2025beyond,
+  title={Beyond Chemical QA: Evaluating LLM's Chemical Reasoning with Modular Chemical Operations},
+  author={Li, Hao and Cao, He and Feng, Bin and Shao, Yanjun and Tang, Xiangru and Yan, Zhiyuan and Yuan, Li and Tian, Yonghong and Li, Yu},
+  journal={arXiv preprint arXiv:2505.21318},
+  year={2025}
+}
+```
