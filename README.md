@@ -12,6 +12,33 @@
 - **[2026-01-26] Paper Available:** Due to the extended moderation process on arXiv, we are temporarily hosting the **pre-print draft** directly in this repository. You can find the PDF in the `assets/` folder or download it [here](./assets/paper_draft.pdf). We will update this section with the official arXiv link as soon as it becomes available.
 - **[2026-04-12] Code & Weights & Dataset Available** We have finalized the code / weight / dataset cleanup and documentation. The full source code and model weights have been open-sourced!
 
+## 🚀 Getting Started
+
+### 1. Model Weights Preparation
+The pre-trained weights for **ChemCraft-7B** are hosted on Hugging Face.
+
+| Model | Link | Size |
+| :--- | :--- | :--- |
+| **ChemCraft-7B** | [🤗 Hugging Face](https://huggingface.co/OzymandisLi/ChemCraft-7B) | ~155 GB |
+
+**Installation:**
+Create a `checkpoint/` directory in the root of this repository and download the weights into it:
+```bash
+mkdir -p checkpoint/
+# Using huggingface-cli to download
+huggingface-cli download OzymandisLi/ChemCraft-7B --local-dir checkpoint/
+```
+
+### 2. Dataset & Agent Trajectories
+While this repository contains basic data samples in `dataset/`, the complete **Chemical Agent Sandbox** data (including massive intermediate trajectories and construction scripts) is hosted separately on Hugging Face Datasets.
+
+| Dataset | Link |
+| :--- | :--- |
+| **ChemCraft-Agent-Trajectory** | [📊 HF Dataset](https://huggingface.co/datasets/OzymandisLi/ChemCraft-Agent-Trajectory) |
+
+> [!IMPORTANT]
+> To fully utilize ChemCraft's capabilities, you must replace the local `dataset/` folder with the complete content from Hugging Face.
+
 ## 🚀 Environment Setup
 
 This project requires three distinct environments for SFT, RL training, and Retrieval tasks. We recommend using `conda` for environment management.
